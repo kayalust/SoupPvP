@@ -41,4 +41,10 @@ public class SpawnController {
             }
         }
     }
+
+    public void setupCuboid() {
+        if (safezoneMin == null || safezoneMax == null) return;
+
+        this.cuboid = new Cuboid(safezoneMin.toBukkitLocation(), safezoneMax.toBukkitLocation());
+    }
 }

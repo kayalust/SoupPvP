@@ -5,6 +5,7 @@ import me.elb1to.souppvp.utils.ColorHelper;
 import me.elb1to.souppvp.utils.command.BaseCommand;
 import me.elb1to.souppvp.utils.command.Command;
 import me.elb1to.souppvp.utils.command.CommandArgs;
+import me.elb1to.souppvp.utils.cuboid.Cuboid;
 import me.elb1to.souppvp.utils.cuboid.CustomLocation;
 import org.bukkit.entity.Player;
 
@@ -37,11 +38,15 @@ public class SetLocationCommand extends BaseCommand {
                 this.plugin.getSpawnController().setSafezoneMax(CustomLocation.fromBukkitLocation(player.getLocation()));
                 saveLocation(player, "SERVER.SPAWN.SAFEZONE-MAX");
                 player.sendMessage(ColorHelper.translate("&aSuccessfully saved safezone max location."));
+
+                plugin.getSpawnController().setupCuboid();
                 break;
             case "min":
                 this.plugin.getSpawnController().setSafezoneMin(CustomLocation.fromBukkitLocation(player.getLocation()));
                 saveLocation(player, "SERVER.SPAWN.SAFEZONE-MIN");
                 player.sendMessage(ColorHelper.translate("&aSuccessfully saved safezone min location."));
+
+                plugin.getSpawnController().setupCuboid();
                 break;
             default:
                 player.sendMessage(ColorHelper.translate(command.getCommand().getUsage()));
