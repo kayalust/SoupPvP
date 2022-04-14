@@ -6,6 +6,11 @@ import me.elb1to.souppvp.SoupPvP;
 import me.elb1to.souppvp.utils.cuboid.Cuboid;
 import me.elb1to.souppvp.utils.cuboid.CustomLocation;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.scheduler.BukkitTask;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Elb1to
@@ -16,6 +21,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class SpawnController {
 
     private final SoupPvP plugin = SoupPvP.getInstance();
+
+    private final Map<UUID, BukkitTask> pendingTeleport = new HashMap<>();
 
     private CustomLocation spawnLocation;
     private CustomLocation safezoneMin;
@@ -43,7 +50,7 @@ public class SpawnController {
     }
 
     public void setupCuboid() {
-        if (safezoneMin == null || safezoneMax == null) return;
+        if (safezoneMin == null || safezoneMax == null) return; // we found skill issues here
 
         this.cuboid = new Cuboid(safezoneMin.toBukkitLocation(), safezoneMax.toBukkitLocation());
     }
